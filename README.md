@@ -203,7 +203,7 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   FROM orders o JOIN customers c
   on o.customer_id = c.customer_id
   GROUP BY c.city
-  ORDER BY CITY 
+  ORDER BY CITY
 
 ```
 
@@ -215,50 +215,47 @@ Note: This step does not use PostgreSQL!
 
 | Person Name | Pet Name | Pet Type | Pet Name 2 | Pet Type 2 | Pet Name 3 | Pet Type 3 | Fenced Yard | City Dweller |
 |-------------|----------|----------|------------|------------|------------|------------|-------------|--------------|
-| Jane        | Ellie    | Dog      | Tiger      | Cat        | Toby       | Turtle     | No          | Yes          |
-| Bob         | Joe      | Horse    |            |            |            |            | No          | No           |
-| Sam         | Ginger   | Dog      | Miss Kitty | Cat        | Bubble     | Fish       | Yes         | No           |
+| Jane        | Ellie 1   | Dog     | Tiger 4    | Cat        | Toby 6     | Turtle     | No          | Yes          |
+| Bob         | Joe   2   | Horse   |            |            |            |            | No          | No           |
+| Sam         | Ginger 3  | Dog     |Miss Kitty5 | Cat        | Bubble 7   | Fish       | Yes         | No           |
 
 Below are some empty tables to be used to normalize the database
 
 * Not all of the cells will contain data in the final solution
 * Feel free to edit these tables as necessary
 
-Table Name:
+Table Name: Person
 
-|            |            |            |            |            |            |            |            |            |
+|Person Id   |Person Name |Fenced Yard |City Dweller|             |            |            |            |            |
+|------------|------------|------------|------------ |------------|------------|------------|------------|------------|
+|     1      | Jane       | No         | Yes         |            |            |            |            |            |
+|     2      | Bob        | No         | No          |            |            |            |            |            |
+|     3      | Sam        | Yes        | No          |            |            |            |            |            |
+
+
+Table Name: Pet
+
+|Pet Id      |Person Id   |Pet Type    |Pet Name id |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|      1     |     1      | Dog        |     1      |            |            |            |            |            |
+|      2     |     2      | Horse      |     2      |            |            |            |            |            |
+|      3     |     3      | Dog        |     3      |            |            |            |            |            |
+|      4     |     1      | Cat        |     4      |            |            |            |            |            |
+|      5     |     3      | Cat        |     5      |            |            |            |            |            |
+|      6     |     1      | turtle     |     6      |            |            |            |            |            |
+|      7     |     3      | Fish       |     7      |            |            |            |            |            |
 
-Table Name:
+Table Name: Pet Name
 
-|            |            |            |            |            |            |            |            |            |
+|Pet Name id |Pet Name    |            |            |            |            |            |            |            |
 |------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-
-Table Name:
-
-|            |            |            |            |            |            |            |            |            |
-|------------|------------|------------|------------|------------|------------|------------|------------|------------|
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
-|            |            |            |            |            |            |            |            |            |
+|      1     |  Ellie     |            |            |            |            |            |            |            |
+|      2     |  Joe       |            |            |            |            |            |            |            |
+|      3     |  Ginger    |            |            |            |            |            |            |            |
+|      4     |  Tiger     |            |            |            |            |            |            |            |
+|      5     |  Ms Kitty  |            |            |            |            |            |            |            |
+|      6     |  Toby      |            |            |            |            |            |            |            |
+|      7     |  Bubble    |            |            |            |            |            |            |            |
 
 Table Name:
 
