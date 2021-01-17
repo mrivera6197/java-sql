@@ -137,6 +137,9 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```SQL
 
+    INSERT INTO customers (customer_id, company_name, contact_name, address, city, postal_code, country)
+    VALUES ('SHIRE', 'The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth')
+
 ```
 
 * [ ] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
@@ -147,6 +150,10 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+
+    UPDATE customers
+    SET postal_code = '11122'
+    WHERE contact_name = 'Bilbo Baggins'
 
 ```
 
@@ -160,6 +167,12 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```SQL
 
+    SELECT c.company_name, count(*)
+    FROM orders o JOIN customers c
+    ON o.customer_id = c.customer_id
+    GROUP BY c.company_name
+    ORDER BY c.company_name  
+
 ```
 
 * [ ] ***list customers by contact name and the number of orders per contact name. Sort the list by the number of orders in descending order. _Jose Pavarotti_ should be at the top with 31 orders followed by _Roland Mendal_ with 30 orders. Last should be _Francisco Chang_ with 1 order***
@@ -170,6 +183,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+    SELECT c.contact_name, count(*) as orders
+    FROM orders o JOIN customers c
+    ON o.customer_id = c.customer_id
+    GROUP BY c.contact_name
+    ORDER BY orders DESC
 
 ```
 
@@ -181,6 +199,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
   </details>
 
 ```SQL
+  SELECT c.city as CITY, count(*) as TOTAL
+  FROM orders o JOIN customers c
+  on o.customer_id = c.customer_id
+  GROUP BY c.city
+  ORDER BY CITY 
 
 ```
 
